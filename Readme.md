@@ -11,7 +11,7 @@
 
 ## API
 
-### greyscale(el, [fn])
+### grayscale(el, [fn])
 
 Turns the `"src"` of an `<img>` tag, or the `background-image` of any other kind
 of element, to _grayscale_.
