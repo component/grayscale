@@ -1,0 +1,15 @@
+{
+  "name": "grayscale",
+  "description": "Turn a <div> background-image or an <img> to grayscale",
+  "keywords": [],
+  "version": "0.0.1",
+  "dependencies": {
+    "event-component": "component/event",
+    "computed-style": "jkroso/computed-style"
+  },
+  "component": {
+    "scripts": {
+      "grayscale/index.js": "index.js"
+    }
+  }
+}
