@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src="build/build.js"></script>
+    <style type="text/css">
+       .bg, img {
+         width: 200px;
+         height: 267px;
+         display: inline-block;
+       }
+
+       .bg {
+         background-image: url(test.jpeg);
+         background-size: cover;
+       }
+    </style>
+  </head>
+  <body>
+    <div>&lt;img src="test.jpeg" alt="test" /&gt;</div>
+    <img src="test.jpeg" alt="test" />
+    &rarr;
+    <img src="test.jpeg" alt="test" class="grayscale" />
+    <br />
+    <div>&lt;div class="bg"&gt;&lt;/div&gt;</div>
+    <div class="bg"></div>
+    &rarr;
+    <div class="bg grayscale"></div>
+    <script type="text/javascript">
+      var grayscale = require('grayscale');
+
+      var els = document.querySelectorAll('.grayscale');
+      for (var i = 0; i < els.length; i++) {
+        grayscale(els[i]);
+      }
+    </script>
+  </body>
+</html>

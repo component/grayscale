@@ -1,0 +1,16 @@
+{
+  "name": "grayscale",
+  "repo": "component/grayscale",
+  "description": "Turn a <div> background-image or an <img> to grayscale",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/event": "*",
+    "jkroso/computed-style": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
