@@ -18,27 +18,31 @@ module.exports = grayscale;
  * through <canvas>.
  *
  * @param {Element} el DOM element to alter
+ * @param {Function} fn Optional callback function to invoke when done, or an error occurs
  * @api public
  */
 
-function grayscale (el) {
+function grayscale (el, fn) {
+  if ('function' != typeof fn) fn = function (err) { if (err) throw err; };
+
   var img;
   var url;
   var tag = el.tagName.toLowerCase();
 
   if ('img' == tag) {
     url = el.src;
-    if (!url) throw new Error('<img> element does not have the "src" attribute set');
+    if (!url) return fn(new Error('<img> element does not have the "src" attribute set'));
   } else {
     // a <div> or something - should have `background-image` set
     url = computedStyle(el)['background-image'];
-    if (!url) throw new Error('<' + tag + '> element does not have "background-image" CSS set');
+    if (!url) return fn(new Error('<' + tag + '> element does not have "background-image" CSS set'));
     var match = /^url\((.*)\)$/.exec(url);
     if (match) url = match[1];
   }
 
   img = new Image();
   event.bind(img, 'load', onload);
+  event.bind(img, 'error', fn);
   img.src = url;
 
   function onload () {
@@ -61,7 +65,14 @@ function grayscale (el) {
 
     // Get the image data from the canvas, which now
     // contains the contents of the image.
-    var imageData = ctx.getImageData(0, 0, width, height);
+    var imageData;
+    try {
+      // `getImageData()` may throw if the <img> is cross-domain
+      imageData = ctx.getImageData(0, 0, width, height);
+    } catch (e) {
+      fn(e);
+      return;
+    }
 
     // The actual RGBA values are stored in the data property.
     var pixelData = imageData.data;
@@ -101,5 +112,7 @@ function grayscale (el) {
     } else {
       el.style.backgroundImage = 'url(' + uri + ')';
     }
+
+    fn(); // done!
   }
 }

@@ -31,7 +31,10 @@
 
       var els = document.querySelectorAll('.grayscale');
       for (var i = 0; i < els.length; i++) {
-        grayscale(els[i]);
+        grayscale(els[i], function (err) {
+          if (err) throw err;
+          console.log('done converting to grayscale!');
+        });
       }
     </script>
   </body>
