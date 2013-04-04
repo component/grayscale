@@ -34,7 +34,8 @@ function grayscale (el, fn) {
     if (!url) return fn(new Error('<img> element does not have the "src" attribute set'));
   } else {
     // a <div> or something - should have `background-image` set
-    url = computedStyle(el)['background-image'];
+    url = el.style.backgroundImage;
+    if (!url) url = computedStyle(el)['background-image'];
     if (!url) return fn(new Error('<' + tag + '> element does not have "background-image" CSS set'));
     var match = /^url\((.*)\)$/.exec(url);
     if (match) url = match[1];
