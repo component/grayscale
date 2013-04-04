@@ -2,7 +2,7 @@
   "name": "grayscale",
   "repo": "component/grayscale",
   "description": "Turn a <div> background-image or an <img> to grayscale",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [],
   "dependencies": {
     "component/event": "*",

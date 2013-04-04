@@ -2,7 +2,7 @@
   "name": "grayscale",
   "description": "Turn a <div> background-image or an <img> to grayscale",
   "keywords": [],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
     "event-component": "component/event",
     "computed-style": "TooTallNate/computed-style"
