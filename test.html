@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <script src="build/build.js"></script>
+    <style type="text/css">
+       .bg, img {
+         width: 200px;
+         height: 267px;
+         display: inline-block;
+       }
+
+       .bg {
+         background-image: url(test.jpeg);
+         background-size: cover;
+       }
+    </style>
+  </head>
+  <body>
+    <div>&lt;img src="test.jpeg" alt="test" /&gt;</div>
+    <img src="test.jpeg" alt="test" class="grayscale" />
+    <br />
+    <div>&lt;div class="bg"&gt;&lt;/div&gt;</div>
+    <div class="bg grayscale"></div>
+    <script type="text/javascript">
+      var grayscale = require('grayscale');
+
+      var els = document.querySelectorAll('.grayscale');
+      [].forEach.call(els, function (el) {
+        el.onclick = function () {
+          el.onclick = null;
+          var start = new Date();
+          grayscale(el, function (err) {
+            if (err) throw err;
+            console.log('done converting %s to grayscale (%dms)!', el.tagName, new Date() - start);
+          });
+          return false;
+        };
+      });
+    </script>
+  </body>
+</html>
